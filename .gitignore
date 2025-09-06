@@ -1,0 +1,20 @@
+# Python cache directories (all subdirectories)
+__pycache__/
+**/__pycache__/
+
+# Data and output directories
+
+# Zip files (all subdirectories)
+*.zip
+**/*.zip
+
+# Environment file
+.env
+
+# folders
+environment/
+src/
+
+# Other temporary files
+apto_reasoning_harmony.jsonl
+apto_reasoning_harmony.parquet

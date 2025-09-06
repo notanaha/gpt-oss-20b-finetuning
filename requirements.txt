@@ -1,0 +1,8 @@
+# Minimal dependencies inferred from commented `pip install` lines in gpt-oss-finetuning.ipynb
+huggingface_hub
+ipywidgets
+transformers
+# Dataset preparation cell suggested these three:
+datasets
+pandas
+pyarrow

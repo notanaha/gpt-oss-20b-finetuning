@@ -118,6 +118,6 @@ README.md
 - This workflow and several implementation details were informed by the article:
   *Fine-tuning with gpt-oss and Hugging Face Transformers* — https://cookbook.openai.com/articles/gpt-oss/fine-tune-transfomers
  - Reasoning-focused dataset structuring and `<think>` extraction also drawn from the dataset:
-   *HuggingFaceH4/Multilingual-Thinking* — https://huggingface.co/datasets/HuggingFaceH4/Multilingual-Thinking
+   *APTOinc/japanese-reasoning-dataset-sample* — https://huggingface.co/datasets/APTOinc/japanese-reasoning-dataset-sample
 
 

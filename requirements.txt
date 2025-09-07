@@ -2,7 +2,9 @@
 huggingface_hub
 ipywidgets
 transformers
-# Dataset preparation cell suggested these three:
 datasets
 pandas
 pyarrow
+python-dotenv
+torch
+accelerate

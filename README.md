@@ -14,8 +14,14 @@ The workflow includes:
 
 ## Runtime Environments
 - Notebook executed on Azure ML Compute Instance with kernel: `azureml_py310_sdkv2`
-- You need to install packages in requirements.txt on top of `azureml_py310_sdkv2`
+- You need to install packages in **requirements.txt** on top of `azureml_py310_sdkv2`
 - Training job ran on a single node of: `Standard_NC40ads_H100_v5` (40 vCPU cores, 320 GB RAM, 128 GB disk, H100 GPU)
+- If image build failed, try removing the following statements.
+
+```
+#RUN apt-get update
+#RUN apt-get install -y openssh-server openssh-client
+```
 
 ## Data Preparation
 The dataset `APTOinc/japanese-reasoning-dataset-sample` is transformed so each record becomes a `messages` list:

@@ -31,9 +31,48 @@ apto_reasoning_harmony.jsonl
 They are then registered as an Azure ML data asset (`apto_reasoning_harmony`).
 
 ## Training Configuration
-- After training, the LoRA adapter is merged (`model.merge_and_unload()`) and saved under `outputs/merged`.
-- For Data Parallel, set NUM_NODES > 1. Please note Standard_NC40ads_H100_v5 has only 1 GPU. 
-<br>If error "Expected to mark a variable ready only once" occurs under DPP, uncomment SFTConfig params and PYTORCH_CUDA_ALLOC_CONF env variable. When applying LoRA to the MoE-style shared/base_layer while using gradient checkpointing (reentrant), this issue tends to occur more frequently under DDP. However, setting gradient_checkpointing_kwargs={"use_reentrant": False} and ddp_find_unused_parameters=False may cause OOM. In such a case, also need to set packing=False and max_seq_length. When this code was prepared, setting max_seq_length hit trl bug. 
+
+* **Merging LoRA Adapters**
+  After training finishes, the LoRA adapter weights are merged back into the base model using:
+
+  ```python
+  model.merge_and_unload()
+  ```
+
+  The merged model is then saved under `outputs/merged`.
+
+* **Data Parallel Training**
+  To use multi-node data parallelism, set `NUM_NODES > 1`.
+  ⚠️ Note: `Standard_NC40ads_H100_v5` VMs only provide **1 GPU per node**.
+
+* **Common DDP Error**
+  If you see the error:
+
+  ```
+  Expected to mark a variable ready only once
+  ```
+
+  under Distributed Data Parallel (DDP):
+
+  1. Uncomment the related `SFTConfig` parameters.
+  2. This error often occurs when LoRA is applied to **MoE-style `shared/base_layer` modules** while using gradient checkpointing with the default *reentrant* mode.
+  3. A workaround is to use:
+
+     ```python
+     gradient_checkpointing_kwargs = {"use_reentrant": False}
+     ddp_find_unused_parameters = False
+     ```
+
+     However, this setting can increase the risk of out-of-memory (OOM) errors.
+
+* **OOM Mitigation Tips**
+  If you encounter OOM after applying the above fix:
+
+  * Set `packing = False`
+  * Explicitly define `max_seq_length` in `SFTConfig`
+  * Set the `PYTORCH_CUDA_ALLOC_CONF` environment variable
+
+  ⚠️ At the time this code was prepared, there was a known bug in TRL where `max_seq_length` caused issues. Check your TRL version if this occurs.
 
 
 

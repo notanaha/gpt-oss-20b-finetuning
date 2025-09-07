@@ -49,7 +49,7 @@ They are then registered as an Azure ML data asset (`apto_reasoning_harmony`).
 
 * **Data Parallel Training**
   To use multi-node data parallelism, set `NUM_NODES > 1`.
-  ⚠️ Note: `Standard_NC40ads_H100_v5` VMs only provide **1 GPU per node**.
+  <br>Note: `Standard_NC40ads_H100_v5` VMs only provide **1 GPU per node**.
 
 * **Common DDP Error**
   If you see the error:
@@ -78,7 +78,7 @@ They are then registered as an Azure ML data asset (`apto_reasoning_harmony`).
   * Explicitly define `max_seq_length` in `SFTConfig`
   * Set the `PYTORCH_CUDA_ALLOC_CONF` environment variable
 
-  ⚠️ At the time this code was prepared, there was a known bug in TRL where `max_seq_length` caused issues. Check your TRL version if this occurs.
+  At the time this code was prepared, there was a known bug in TRL where `max_seq_length` caused issues.
 
 
 

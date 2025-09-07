@@ -114,3 +114,8 @@ README.md
 2. Run the notebook cells in order (environment build, dataset conversion, data registration, training job submission, model registration, deployment).
 3. Send a POST request with an auth key to the endpoint scoring URI.
 
+## Acknowledgements / References
+- This workflow and several implementation details were informed by the article:
+  *Fine-tuning with gpt-oss and Hugging Face Transformers* — https://cookbook.openai.com/articles/gpt-oss/fine-tune-transfomers
+
+

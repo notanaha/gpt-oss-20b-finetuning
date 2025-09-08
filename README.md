@@ -3,6 +3,20 @@
 ## Overview
 This project fine-tunes the `openai/gpt-oss-20b` model for Japanese reasoning.
 
+With the original model, the thought process is in English. 
+<br>For instance, if the user asks: `オーストラリアの首都はどこですか？(What is the capital of Australia?)`
+```
+The user asks in Japanese: "オーストラリアの首都はどこですか？" (What is the capital of Australia?). The answer: Canberra. Should provide in Japanese. So respond: "オーストラリアの首都はキャンベラです." Possibly add more context. That's straightforward.
+オーストラリアの首都はキャンベラです。
+```
+After the fine-tuning process with a Japanese reasoning dataset, the thought process will change.
+```
+まず、問題文を確認します。「オーストラリアの首都はどこですか？」という質問です。これは地理に関する基本的な知識を問うものです。
+次に、オーストラリアの首都について考えます。一般的に知られていることとして、シドニーはオーストラリア最大の都市であり、経済的にも重要な都市ですが、首都ではありません。実際の首都はキャンベラです。キャンベラはオーストラリアの中部に位置し、政府機関が集中しています。
+さらに、オーストラリアの首都がキャンベラであることを確認するために、他の情報源を参照することもできます。例えば、オーストラリア政府の公式ウェブサイトや、国際的な地理情報サイトなどで確認することができます。
+最後に、正しい答えをまとめます。オーストラリアの首都はキャンベラです。オーストラリアの首都はキャンベラです。
+```
+
 The workflow includes:
 1. Preparing an Azure ML Environment
 2. Converting the APTO reasoning dataset into Harmony (messages) format
